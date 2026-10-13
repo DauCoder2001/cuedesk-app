@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>CueDesk – TV-Ansicht</title>
+  <style>
+    /* Dunkles Theme für den Fernseher blendet weniger und wirkt modern */
+    body {
+      background: #111;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+    /* Auto-Fit-Rahmen: das 2x2-Raster (#tv-stage) wird per JS auf den sichtbaren
+       Bereich skaliert – vor allem fuer den Overscan-Sicherheitsrand. */
+    #tv-viewport { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+    #tv-stage {
+      width: 100vw; height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 15px;
+      padding: 15px;
+      box-sizing: border-box;
+      transform-origin: center center;
+    }
+    .table-card { 
+      background: #222; 
+      border-radius: 15px; 
+      padding: 20px; 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: center; 
+      text-align: center; 
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+    .table-title { 
+      font-size: 3.5vh; 
+      color: #888; 
+      margin-bottom: auto; 
+      font-weight: bold;
+    }
+    .game-badge {
+      font-size: 2vh;
+      background: #333;
+      padding: 3px 10px;
+      border-radius: 5px;
+      vertical-align: middle;
+      margin-left: 10px;
+      color: #ccc;
+    }
+    .matchup { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      font-size: 5vh; 
+      font-weight: bold; 
+      margin: 20px 0;
+    }
+    .p1, .p2 {
+      flex: 1;
+      /* Lange Namen sauber umbrechen statt das Layout zu sprengen */
+      font-size: clamp(2.2vh, 4vh, 4.5vh);
+      line-height: 1.1;
+      overflow-wrap: break-word;
+      word-break: break-word;
+      hyphens: auto;
+      /* Maximal 3 Zeilen, danach "..." */
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .p1 { color: #ff4444; text-align: right; }
+    .p2 { color: #4488ff; text-align: left; }
+    .score { 
+      font-size: 10vh; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      flex: 0 0 auto;
+      margin: 0 20px; 
+      background: #000;
+      padding: 10px 20px;
+      border-radius: 10px;
+    }
+    .score span { padding: 0 15px; }
+    .colon { color: #555; }
+    .stats { 
+      font-size: 2.5vh; 
+      color: #aaa; 
+      margin-top: auto; 
+    }
+    .inactive { color: #555; font-size: 4vh; margin: auto; }
+  </style>
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon-CHDvK6Rk.svg">
+  <script type="module" crossorigin src="/assets/tv-DlIxL93s.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <link rel="modulepreload" crossorigin href="/assets/zuschauen-KKQesivj.js">
+  <link rel="modulepreload" crossorigin href="/assets/wake-lock-DsKx8cXg.js">
+  <link rel="modulepreload" crossorigin href="/assets/board-regeln-CxBug1AS.js">
+  <link rel="modulepreload" crossorigin href="/assets/tv-autofit-BTz2DVA_.js">
+</head>
+<body>
+
+  <!-- CueDesk: Die Kacheln entstehen aus der Tischliste des Vereins (siehe Skript). -->
+  <div id="tv-viewport"><div id="tv-stage"></div></div>
+
+</body>
+</html>

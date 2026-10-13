@@ -1,0 +1,16 @@
+function x(r){return new Promise(c=>{const t=document.createElement("div");t.className="app-dlg-overlay",t.innerHTML=`
+      <div class="app-dlg-box" role="dialog" aria-modal="true">
+        <div class="app-dlg-title">Welche Disziplin wurde gespielt?</div>
+        <div class="dz-knoepfe" style="display:flex;gap:10px;margin-top:8px"></div>
+        <div class="app-dlg-actions"><button type="button" class="app-dlg-cancel">Abbrechen</button></div>
+      </div>`;const p=t.querySelector(".dz-knoepfe"),e=o=>{t.remove(),c(o)};[["8-ball","8-Ball"],["9-ball","9-Ball"],["10-ball","10-Ball"]].forEach(([o,a])=>{const n=document.createElement("button");n.type="button",n.textContent=a,n.style.cssText=`flex:1;padding:18px 8px;font-size:18px;${o===r?"outline:3px solid #f1c40f;":""}`,n.addEventListener("click",()=>e(o)),p.appendChild(n)}),t.querySelector(".app-dlg-cancel").addEventListener("click",()=>e(null)),t.addEventListener("click",o=>{o.target===t&&e(null)}),document.body.appendChild(t)})}function h(r,c,t=""){return new Promise(p=>{const e=document.createElement("div");e.className="app-dlg-overlay",e.innerHTML=`
+      <div class="app-dlg-box" role="dialog" aria-modal="true" style="max-width:520px">
+        <div class="app-dlg-title"></div>
+        <input class="app-dlg-input" type="search" placeholder="Name suchen" autocomplete="off">
+        <div class="sp-liste" style="max-height:48vh;overflow:auto;margin-top:10px;border:1px solid #e2e8f0;border-radius:6px"></div>
+        <div class="sp-gast" style="margin-top:12px;display:none">
+          <div style="font-size:13px;color:#555;margin-bottom:6px">Nicht in der Liste? Als Gast anlegen:</div>
+          <button type="button" class="sp-gast-knopf" style="width:100%"></button>
+        </div>
+        <div class="app-dlg-actions"><button type="button" class="app-dlg-cancel">Abbrechen</button></div>
+      </div>`;const o=e.querySelector(".app-dlg-title"),a=e.querySelector(".app-dlg-input"),n=e.querySelector(".sp-liste"),b=e.querySelector(".sp-gast"),g=e.querySelector(".sp-gast-knopf");o.textContent=r,a.value=t;const i=s=>{e.remove(),document.removeEventListener("keydown",m),p(s)},m=s=>{s.key==="Escape"&&i(null)};function v(){const s=a.value.trim().toLowerCase(),f=c.filter(l=>l.name.toLowerCase().includes(s));n.innerHTML="",f.forEach(l=>{const d=document.createElement("button");d.type="button",d.style.cssText="display:block;width:100%;text-align:left;background:#fff;color:#1f3b73;border:none;border-bottom:1px solid #eef2f7;border-radius:0;padding:12px 14px;font-size:16px;font-weight:normal",d.textContent=l.gast?`${l.name}  (Gast)`:l.name,d.addEventListener("click",()=>i({id:l.id,name:l.name})),n.appendChild(d)}),f.length===0&&(n.innerHTML='<div style="padding:12px 14px;color:#777">Niemand gefunden.</div>');const u=a.value.trim(),y=c.some(l=>l.name.toLowerCase()===u.toLowerCase());b.style.display=u.length>=2&&!y?"block":"none",g.textContent=`„${u}“ als Gast anlegen`}a.addEventListener("input",v),g.addEventListener("click",()=>i({id:null,name:a.value.trim()})),e.querySelector(".app-dlg-cancel").addEventListener("click",()=>i(null)),e.addEventListener("click",s=>{s.target===e&&i(null)}),document.addEventListener("keydown",m),document.body.appendChild(e),v(),a.focus()})}export{x as disziplinDialog,h as spielerDialog};

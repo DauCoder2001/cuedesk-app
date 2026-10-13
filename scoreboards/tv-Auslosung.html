@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CueDesk – Auslosung</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon-CHDvK6Rk.svg">
+  <style>
+    /* ==========================================================================
+       EDLES SMART-TV DESIGN (wie die TV-Ansicht in Turnier_Vorbereitung.html)
+       ========================================================================== */
+    * { box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif; background: #111; color: #fff;
+      margin: 0; height: 100vh; overflow: hidden;
+    }
+    /* Auto-Fit: der Inhalt in #tv-stage wird per JS passend auf den Bildschirm skaliert */
+    #tv-viewport { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+    #tv-stage { width: 100vw; padding: 3vh 2vw; transform-origin: center center; }
+    .tv-title {
+      text-align: center; color: #888; font-size: 3.5vh; margin: 0 0 10px;
+      font-weight: bold; text-transform: uppercase; letter-spacing: 2px;
+    }
+    .tv-title .highlight { color: #38bdf8; }
+    .tv-subtitle { text-align: center; color: #aaa; font-size: 2.5vh; margin-bottom: 30px; }
+
+    .tv-grid { display: grid; gap: 20px; box-sizing: border-box; }
+    .layout-single-group { grid-template-columns: 1fr; max-width: 700px; margin: 0 auto; }
+    .layout-two-groups  { grid-template-columns: 1fr 1fr; }
+    .layout-four-groups { grid-template-columns: 1fr 1fr; }
+
+    .table-card {
+      background: #222; border-radius: 15px; padding: 25px; display: flex;
+      flex-direction: column; box-shadow: 0 4px 10px rgba(0,0,0,0.5); border: 1px solid #333;
+    }
+    .table-title {
+      font-size: 3.5vh; color: #fff; margin-bottom: 15px; font-weight: bold;
+      display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 2px solid #333; padding-bottom: 12px;
+    }
+    .game-badge { font-size: 2vh; background: #e67e22; padding: 4px 12px; border-radius: 8px; color: #fff; font-weight: bold; }
+
+    .tv-player-list { list-style: none; padding: 0; margin: 0; }
+    .tv-player-list li {
+      font-size: 3.8vh; font-weight: bold; padding: 10px 18px; margin-bottom: 8px;
+      background: #1a1a1a; border-radius: 10px; display: flex; align-items: center;
+      border-left: 8px solid #4488ff;
+    }
+    .tv-player-list li:nth-child(even) { border-left-color: #ff4444; }
+
+    .empty { text-align: center; color: #666; font-size: 4vh; margin-top: 18vh; }
+  </style>
+  <script type="module" crossorigin src="/assets/tvAuslosung-2nLMK3VK.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <link rel="modulepreload" crossorigin href="/assets/zuschauen-KKQesivj.js">
+  <link rel="modulepreload" crossorigin href="/assets/wake-lock-DsKx8cXg.js">
+  <link rel="modulepreload" crossorigin href="/assets/tv-autofit-BTz2DVA_.js">
+</head>
+<body>
+
+  <div id="tv-viewport"><div id="tv-stage">
+    <div class="tv-title" id="title">📺 Gruppen-Auslosung</div>
+    <div class="tv-subtitle" id="subtitle"></div>
+    <div class="tv-grid" id="grid"></div>
+    <div class="empty" id="empty" style="display:none;">Warte auf Auslosung…</div>
+  </div></div>
+
+
+</body>
+</html>

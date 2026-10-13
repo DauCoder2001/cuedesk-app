@@ -1,0 +1,1 @@
+function h(i,e){function n(){let t=Number(e&&e());Number.isFinite(t)||(t=0),t=Math.max(0,Math.min(20,t));const o=1-t/100,f=window.innerWidth*o,a=window.innerHeight*o,r=i.offsetWidth,s=i.offsetHeight;if(!r||!s)return;const c=Math.min(f/r,a/s,1);i.style.transform="scale("+c+")"}return window.addEventListener("resize",n),n(),n}export{h as s};

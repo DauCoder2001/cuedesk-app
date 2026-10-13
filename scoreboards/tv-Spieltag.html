@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CueDesk – Spieltag-Ergebnis</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon-CHDvK6Rk.svg">
+  <!-- Liga-Spieltag am Fernseher ("TV zeigt: Spieltag-Ergebnis"): Gesamtstand
+       aller Begegnungen und je Begegnung eine Zeile. Gerechnet wie auf der
+       Zuschauerseite (src/zuschauen.ts, spieltagGesamt), geliefert von der
+       Anbindung unter tournament/spieltag. Stil wie tv-Turnier-Ergebnis. -->
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; background: #111; color: #fff; margin: 0; height: 100vh; overflow: hidden; }
+    /* Auto-Fit: der Inhalt in #tv-stage wird per JS passend auf den Bildschirm skaliert */
+    #tv-viewport { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+    #tv-stage { width: 100vw; padding: 4vh 6vw; transform-origin: center center; }
+    .tv-title { text-align: center; color: #888; font-size: 3.5vh; margin: 0 0 1vh; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; }
+    .tv-title .highlight { color: #38bdf8; }
+    .tv-sub { text-align: center; color: #aaa; font-size: 2.6vh; margin-bottom: 5vh; }
+    .gesamt { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 4vw; }
+    .gesamt .name { font-size: 5vh; font-weight: bold; }
+    .gesamt .links { text-align: right; }
+    .gesamt .zahl { font-size: 13vh; font-weight: bold; color: #38bdf8; white-space: nowrap; line-height: 1; }
+    .mp { text-align: center; color: #ccc; font-size: 3vh; margin-top: 2vh; }
+    .mp b { color: #fff; }
+    .sieger { text-align: center; color: #facc15; font-size: 3.4vh; font-weight: bold; margin: 1.5vh 0 6vh; }
+    .sieger.offen { color: #aaa; }
+    table { width: 100%; border-collapse: collapse; }
+    th { background: #1f3b73; color: #fff; font-size: 2vh; text-transform: uppercase; letter-spacing: 1px; padding: 1.2vh 2vw; text-align: center; }
+    th.left, td.left { text-align: left; }
+    td { padding: 2vh 2vw; font-size: 3.4vh; border-bottom: 1px solid #2a2a2a; text-align: center; }
+    tr:nth-child(even) td { background: #191919; }
+    td.pp { font-weight: bold; color: #38bdf8; width: 22%; }
+    td.mpz { color: #ccc; width: 22%; }
+    td .lauf { color: #22c55e; font-size: 2.4vh; margin-left: 1vw; }
+    .empty { text-align: center; color: #666; font-size: 4vh; margin-top: 18vh; }
+  </style>
+  <script type="module" crossorigin src="/assets/tvSpieltag-CRCclD1i.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <link rel="modulepreload" crossorigin href="/assets/zuschauen-KKQesivj.js">
+  <link rel="modulepreload" crossorigin href="/assets/wake-lock-DsKx8cXg.js">
+  <link rel="modulepreload" crossorigin href="/assets/tv-autofit-BTz2DVA_.js">
+</head>
+<body>
+
+  <div id="tv-viewport"><div id="tv-stage">
+    <div class="tv-title">🏆 Ergebnis des <span class="highlight">Spieltags</span></div>
+    <div class="tv-sub" id="sub"></div>
+    <div id="content"></div>
+    <div class="empty" id="empty" style="display:none;">Noch kein Spieltag-Ergebnis vorhanden.</div>
+  </div></div>
+
+
+</body>
+</html>

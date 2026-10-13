@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="theme-color" content="#0d88d0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no, maximum-scale=1">
+<title>14.1 Protokoll</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; font-family: Arial, sans-serif; background: #eef0f3; color: #222; }
+
+  #toolbar {
+    background: #1f3b73; color: #fff; display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 16px; position: sticky; top: 0; z-index: 5;
+  }
+  #toolbar .title { font-size: 18px; font-weight: bold; }
+  #toolbar .actions { display: flex; gap: 8px; align-items: center; }
+  #toolbar a { color: #fff; font-size: 13px; text-decoration: none; opacity: .92; }
+  #toolbar button {
+    background: rgba(255,255,255,.16); color: #fff; border: none; border-radius: 7px;
+    padding: 7px 14px; font-size: 14px; cursor: pointer;
+  }
+
+  #sheet {
+    background: #fff; max-width: 800px; margin: 16px auto; border-radius: 10px; overflow: hidden;
+    box-shadow: 0 6px 24px rgba(0,0,0,.15);
+  }
+
+  #summary {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    padding: 12px 18px; border-bottom: 1px solid #e6e6e6;
+  }
+  .ls-p { flex: 1; text-align: center; }
+  .ls-name { font-size: 16px; font-weight: bold; }
+  .ls-score { font-size: 34px; font-weight: bold; line-height: 1; }
+  .ls-stats { font-size: 13px; color: #555; margin-top: 3px; }
+  .ls-attable { font-size: 12px; color: #1a7a1a; font-weight: bold; margin-top: 3px; }
+  .ls-target { text-align: center; color: #444; padding: 0 6px; }
+  .ls-target .ls-tv { font-size: 22px; font-weight: bold; }
+
+  table { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 15px; text-align: center; }
+  th, td { padding: 6px 2px; }
+  thead th { border-bottom: 1px solid #ddd; }
+  .pz-sub th { font-size: 12px; color: #555; border-bottom: 1px solid #ccc; }
+  .pz-h1 { background: #fbeaea; color: #cc0000; }
+  .pz-h2 { background: #eaeefb; color: #1133cc; }
+  tbody tr:nth-child(even) { background: #fafafa; }
+  .pz-bl { border-left: 2px solid #ccc; }
+  .pz-no { color: #888; }
+  .pz-tot { font-weight: bold; }
+  .pz-f { color: #cc0000; font-weight: bold; }
+  .pz-f3 { color: #a30000; font-weight: bold; }
+  .pz-s { color: #1a7a1a; font-weight: bold; }
+  .pz-v { color: #1133cc; font-weight: bold; }
+  .pz-3frow { background: #fff0f0; }
+  .pz-hs { background: #fff6cc; font-weight: bold; border-radius: 4px; }
+  .pz-live td { background: #eef6ff; font-style: italic; }
+  .pz-live .pz-no { color: #1f3b73; font-style: normal; font-weight: bold; }
+  .pz-livecell { background: #eef6ff; font-style: italic; }
+  .pz-liveno { color: #1f3b73; font-weight: bold; }
+  .pz-liveno, .pz-live .pz-liveno { font-style: normal; }   /* Live-Pfeil ▶ aufrecht, nicht kursiv */
+  .pz-div td { background: #e9eef6; color: #1f3b73; font-size: 13px; font-weight: bold;
+    border-top: 1px solid #cfd6e2; border-bottom: 1px solid #cfd6e2; }
+  .pz-rack td { border-top: 1px solid #cfd6e2; }
+  td.pz-rackmark { background: #e9eef6; color: #1f3b73; font-weight: bold; font-size: 13px; border-radius: 4px; }
+  .pz-empty { color: #888; padding: 18px; }
+
+  #tablewrap { padding: 4px 14px 6px; }
+  #legend { display: flex; flex-wrap: wrap; gap: 8px 18px; padding: 10px 18px 16px;
+    border-top: 1px solid #eee; font-size: 12px; color: #666; }
+  #legend .pz-f { color: #cc0000; }
+  #legend .pz-f3 { color: #a30000; }
+  #legend .pz-hs { background: #fff6cc; padding: 1px 6px; border-radius: 4px; }
+  #legend #log-time { margin-left: auto; font-weight: bold; color: #1f3b73; }
+
+  #note { text-align: center; font-size: 12px; color: #888; padding: 0 0 18px; }
+
+  @media print {
+    @page { size: A4 portrait; margin: 12mm; }
+    body { background: #fff; }
+    #toolbar { display: none; }
+    #sheet { box-shadow: none; margin: 0; max-width: 100%; border-radius: 0; }
+    #note { display: none; }
+  }
+</style>
+<link rel="icon" type="image/svg+xml" href="/assets/favicon-CHDvK6Rk.svg">
+  <script type="module" crossorigin src="/assets/vierzehnEinsProtokoll-BovrxrN8.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <link rel="modulepreload" crossorigin href="/assets/zuschauen-KKQesivj.js">
+  <link rel="modulepreload" crossorigin href="/assets/wake-lock-DsKx8cXg.js">
+  <link rel="modulepreload" crossorigin href="/assets/share-protocol-ciOdaQM6.js">
+</head>
+
+<body>
+  <div id="toolbar">
+    <div class="title" id="tbtitle">📋 14.1 Protokoll</div>
+    <div class="actions">
+      <a id="boardlink" href="#">↩ Zum Board</a>
+      <button id="druck" type="button" onclick="window.print()">🖨 Drucken</button>
+      <button id="log-share" type="button">📤 Senden</button>
+    </div>
+  </div>
+
+  <div id="sheet">
+    <div id="summary"></div>
+    <div id="tablewrap"><table id="ptable"></table></div>
+    <div id="legend">
+      <span><b class="pz-f">/</b> 1. Foul</span>
+      <span><b class="pz-f">//</b> 2. Foul</span>
+      <span><b class="pz-f3">3F</b> drei Fouls (−15)</span>
+      <span><b class="pz-f">−2</b> Eröffnungsfoul</span>
+      <span><b style="color:#1a7a1a;">S</b> Sicherheit</span>
+      <span><b style="color:#1133cc;">V</b> Verschossen</span>
+      <span><b>HS</b> = Höchstserie <span class="pz-hs">(gelb markiert)</span></span>
+      <span><b style="color:#1f3b73;">▶</b> laufende Aufnahme</span>
+      <span><b>*</b> Rack mit Null-Kugel, alle 15 neu</span>
+      <span id="log-time"></span>
+    </div>
+  </div>
+  <div id="note">Diese Seite aktualisiert sich automatisch (Live-Stand). Nur Ansicht – kein Schreibzugriff.</div>
+
+</body>
+</html>
