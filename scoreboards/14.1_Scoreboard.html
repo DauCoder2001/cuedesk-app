@@ -146,7 +146,7 @@
     width: fit-content;
     max-width: 100%;
     border-radius: 1.5vmin;
-    padding: 0.6vmin 1.5vmin 1vmin;
+    padding: 0.6vmin 1.5vmin 0.4vmin;
     font-size: 6vmin;
     font-weight: bold;
   }
@@ -198,7 +198,9 @@
     font-size: 30vmin;
     font-weight: bold;
     user-select: none;
-    line-height: 1;
+    /* Ziffern haben keine Unterlaengen: knappe Zeilenhoehe, damit die gruene
+       Aktiv-Flaeche nicht in den Hinweis darunter ragt */
+    line-height: 0.82;
   }
 
   #s1 {
@@ -217,7 +219,7 @@
     font-weight: bold;
     line-height: 1;
     padding: 0 1vmin;
-    margin-top: 20.3vmin;   /* auf Ziffernmitte; alles vmin-basiert, traegt ueber Bildschirmgroessen */
+    margin-top: 17.6vmin;   /* auf Ziffernmitte (zur Zeilenhoehe 0.82 der Ziffern); alles vmin-basiert, traegt ueber Bildschirmgroessen */
     position: relative;     /* Anker fuer das Mini-Protokoll */
   }
 
@@ -457,6 +459,8 @@
   /* Wechsel zum Pool-Board: kein Spiel, deshalb andere Optik als die Liste */
   .pick-wechsel { width: 100%; margin-top: 2vmin; background: #fff; color: #1f3b73;
     border: 0.3vmin solid #1f3b73; font-size: 3vmin; padding: 1.8vmin; border-radius: 1.2vmin; }
+  /* Liga: mehrere Begegnungen zugleich - Ueberschrift je Begegnung */
+  .pick-begegnung { display: block; font-size: 2.8vmin; font-weight: bold; color: #1f3b73; margin: 2vmin 0 0.5vmin; text-align: left; }
   .pick-notiz { display: block; text-align: center; font-size: 2.4vmin; color: #666; margin-top: 2.5vmin; }
   /* Partie, die hier laeuft, deren Stand am Tisch aber fehlt */
   .pick141.pick-haengt { background: #fff4e0; border: 0.3vmin solid #b8860b; margin-bottom: 2vmin; }
@@ -588,13 +592,13 @@
   <link rel="icon" type="image/svg+xml" href="/assets/favicon-CHDvK6Rk.svg">
   <!-- Eigene Dialoge (alert, confirmModal, promptModal). Als Modul eingebunden, damit
      der Bau es mitnimmt; es laeuft trotzdem vor dem Hauptskript, weil es davor steht. -->
-  <script type="module" crossorigin src="/assets/vierzehnEins-Ce-U9qL5.js"></script>
+  <script type="module" crossorigin src="/assets/vierzehnEins-D-DnUJFP.js"></script>
   <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
   <link rel="modulepreload" crossorigin href="/assets/start-hinweis-C-ZKrFAb.js">
   <link rel="modulepreload" crossorigin href="/assets/preload-helper-BXl3LOEh.js">
   <link rel="modulepreload" crossorigin href="/assets/zuschauen-KKQesivj.js">
-  <link rel="modulepreload" crossorigin href="/assets/wake-lock-B-MQ9OQM.js">
-  <link rel="modulepreload" crossorigin href="/assets/board-regeln-ywhPzGNR.js">
+  <link rel="modulepreload" crossorigin href="/assets/wake-lock-sWi4Sh42.js">
+  <link rel="modulepreload" crossorigin href="/assets/board-regeln-CbvVdv5j.js">
   <link rel="modulepreload" crossorigin href="/assets/share-protocol-ciOdaQM6.js">
 </head>
 
