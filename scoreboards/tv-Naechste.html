@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CueDesk – Nächste Spiele</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon-CHDvK6Rk.svg">
+  <!-- "TV zeigt: Nächste Spiele": die naechsten sechs offenen Paarungen in der
+       Reihenfolge der Spielplan-Liste, mit Hinweis, wer gerade noch an einem
+       anderen Tisch spielt. Gerechnet in js/turnier-plan.ts (naechsteSpiele),
+       Daten aus tournament/active. Stil wie die anderen TV-Seiten. -->
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; background: #111; color: #fff; margin: 0; height: 100vh; overflow: hidden; }
+    /* Auto-Fit: der Inhalt in #tv-stage wird per JS passend auf den Bildschirm skaliert */
+    #tv-viewport { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+    #tv-stage { width: 100vw; padding: 4vh 5vw; transform-origin: center center; }
+    .kopf { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 3vh; }
+    .titel { color: #ddd; font-size: 4.5vh; font-weight: bold; }
+    .sub { color: #888; font-size: 2.4vh; }
+    .liste { display: grid; gap: 1.6vh; }
+    .spiel { display: grid; grid-template-columns: 30vw minmax(0, 1fr) auto; align-items: center; gap: 2vw;
+             background: #222; border-radius: 12px; padding: 2.2vh 2vw; }
+    .marke { display: inline-block; color: #fff; border-radius: 6px; padding: 0.5vh 1vw; font-size: 2.2vh; font-weight: bold; white-space: nowrap; }
+    .gruppe-A { background: #2f9a76; }
+    .gruppe-B { background: #3a7fbf; }
+    .gruppe-C { background: #c95300; }
+    .gruppe-D { background: #8a44ad; }
+    .gruppe-neutral { background: #555; }
+    .paar { font-size: 4.4vh; font-weight: bold; overflow-wrap: anywhere; }
+    .p1 { color: #ff4444; }
+    .p2 { color: #4488ff; }
+    .gegen { color: #666; margin: 0 1vw; }
+    .zustand { font-size: 2.6vh; text-align: right; }
+    .bereit { color: #22c55e; }
+    .wartet { color: #e0b050; }
+    .fuss { margin-top: 3vh; color: #888; font-size: 2.4vh; }
+    .empty { text-align: center; color: #666; font-size: 4vh; margin-top: 18vh; }
+  </style>
+  <script type="module" crossorigin src="/assets/tvNaechste-BYIDRrhA.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <link rel="modulepreload" crossorigin href="/assets/preload-helper-BXl3LOEh.js">
+  <link rel="modulepreload" crossorigin href="/assets/zuschauen-Blo4ZQQp.js">
+  <link rel="modulepreload" crossorigin href="/assets/wake-lock-C0NdCknr.js">
+  <link rel="modulepreload" crossorigin href="/assets/tv-autofit-BTz2DVA_.js">
+</head>
+<body>
+
+  <div id="tv-viewport"><div id="tv-stage">
+    <div class="kopf"><span class="titel">Nächste Spiele</span><span class="sub" id="sub"></span></div>
+    <div class="liste" id="liste"></div>
+    <div class="fuss" id="fuss"></div>
+    <div class="empty" id="empty" style="display:none;"></div>
+  </div></div>
+
+</body>
+</html>
