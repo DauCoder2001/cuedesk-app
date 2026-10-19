@@ -138,13 +138,14 @@
   .player-box { flex: 1; display: flex; justify-content: center; min-width: 0; }
 
   /* Gruene Aktiv-Flaeche: umschliesst Name, Stift, Statistik und Zaehler.
-     width:fit-content -> so breit wie der breiteste Teil, waechst mit langen Namen. */
+     Immer volle Haelftenbreite, damit der Stift unten rechts bei kurzen und langen
+     Namen an derselben Stelle sitzt (bis 18.10.2026: fit-content). */
   .player-hl {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: fit-content;
-    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
     border-radius: 1.5vmin;
     padding: 0.6vmin 1.5vmin 0.4vmin;
     font-size: 6vmin;
@@ -154,16 +155,17 @@
   .player-left  { color: var(--red); }
   .player-right { color: var(--blue); }
 
-  /* Name: konstantes Padding, damit die Aktiv-Markierung die Hoehe nicht aendert */
-  #p1, #p2 { padding: 0.3vmin 1vmin; }        /* Hoehe konstant halten */
-  /* Namen 25 % groesser als der Block (7,5 statt 6 vmin). Zu lange Namen
-     verkleinert namenEinpassen() bis auf 6 vmin, erst danach brechen sie um. */
-  #p1, #p2 { font-size: 7.5vmin; white-space: nowrap; }
-  #p1.umbruch, #p2.umbruch { white-space: normal; }
+  /* Namen einzeilig, 10 vmin. Zu lange Namen verkleinert namenEinpassen() bis
+     auf 5 vmin, darunter wird mit "…" gekuerzt - nie umgebrochen. Feste
+     Zeilenhoehe: beide Zaehler stehen so immer auf gleicher Hoehe. */
+  #p1, #p2 { font-size: 10vmin; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+             text-align: center; height: 12vmin; line-height: 12vmin; }
   .player-hl.active { background: var(--active); }
 
-  /* Name + Stift in einer Zeile */
-  .name-row { display: flex; align-items: center; justify-content: center; gap: 1.5vmin; }
+  /* Namenszeile ueber die ganze Breite; der Stift sitzt darunter am rechten
+     Rand, auf Hoehe der Statistik, und nimmt dem Namen keine Breite weg */
+  .name-row { position: relative; align-self: stretch; height: 12vmin; }
+  .name-row .edit-btn { position: absolute; right: 0; top: 100%; margin-top: 0.4vmin; z-index: 2; }
 
   /* Mittelspalte mit Seitenwechsel (auf Hoehe der Namen, ~20% kleiner) */
   .player-mid { flex: 0 0 auto; align-self: stretch; display: flex; flex-direction: column;
@@ -219,7 +221,7 @@
     font-weight: bold;
     line-height: 1;
     padding: 0 1vmin;
-    margin-top: 17.6vmin;   /* auf Ziffernmitte (zur Zeilenhoehe 0.82 der Ziffern); alles vmin-basiert, traegt ueber Bildschirmgroessen */
+    margin-top: 17.6vmin;   /* Startwert; doppelpunktAusrichten() setzt ihn genau auf die Ziffernmitte */
     position: relative;     /* Anker fuer das Mini-Protokoll */
   }
 
@@ -391,6 +393,11 @@
     .score {
       font-size: 26vmin;
     }
+
+    /* Schmale Haelften: der Stift bekommt eine eigene Zeile unter dem Namen,
+       sonst laege er auf der Statistik */
+    .name-row { height: auto; }
+    .name-row .edit-btn { position: static; display: block; margin: 0.4vmin auto 0; }
 
     #colon {
       font-size: 11vmin;
@@ -592,7 +599,7 @@
   <link rel="icon" type="image/svg+xml" href="/assets/favicon-CHDvK6Rk.svg">
   <!-- Eigene Dialoge (alert, confirmModal, promptModal). Als Modul eingebunden, damit
      der Bau es mitnimmt; es laeuft trotzdem vor dem Hauptskript, weil es davor steht. -->
-  <script type="module" crossorigin src="/assets/vierzehnEins-CbSuUT-V.js"></script>
+  <script type="module" crossorigin src="/assets/vierzehnEins-DXas__tg.js"></script>
   <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
   <link rel="modulepreload" crossorigin href="/assets/start-hinweis-C-ZKrFAb.js">
   <link rel="modulepreload" crossorigin href="/assets/preload-helper-BXl3LOEh.js">
