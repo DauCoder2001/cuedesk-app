@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CueDesk – Teamstand</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon-CHDvK6Rk.svg">
+  <!-- Teamvergleich am Fernseher ("TV zeigt: Teamstand"): Teamstand gross,
+       darunter die freigegebenen Bloecke mit Ergebnissen und laufenden
+       Staenden. Gerechnet in src/teamvergleich.ts (teamstandAnzeige),
+       geliefert von der Anbindung unter tournament/teamstand. -->
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; background: #111; color: #fff; margin: 0; height: 100vh; overflow: hidden; }
+    #tv-viewport { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+    #tv-stage { width: 100vw; padding: 3vh 5vw; transform-origin: center center; }
+    .sub { text-align: center; color: #aaa; font-size: 2.6vh; margin-bottom: 2vh; }
+    .stand { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 3vw; }
+    .team { font-size: 5vh; font-weight: bold; padding: 1vh 2vw; border-radius: 12px; text-align: center; overflow-wrap: anywhere; }
+    .team-A { background: #c62828; }
+    .team-B { background: #1f5fae; }
+    .zahl { font-size: 14vh; font-weight: bold; line-height: 1; white-space: nowrap; }
+    .ergebnis { text-align: center; font-size: 3.4vh; font-weight: bold; margin: 1.5vh 0 3vh; color: #facc15; }
+    .ergebnis.offen { color: #aaa; font-weight: normal; }
+    table { width: 100%; border-collapse: collapse; }
+    td { padding: 1vh 1vw; font-size: 2.8vh; border-bottom: 1px solid #2a2a2a; }
+    tr.blockanfang td { border-top: 3px solid #555; }
+    td.block { color: #888; width: 12%; white-space: nowrap; }
+    td.art { color: #aaa; width: 12%; }
+    td.paar { width: 46%; }
+    td.paar .p1 { color: #ff6666; }
+    td.paar .p2 { color: #6699ff; }
+    td.paar .gegen { color: #666; margin: 0 0.6vw; }
+    td.stand-zelle { text-align: right; white-space: nowrap; }
+    .sieg { display: inline-block; margin-left: 1vw; padding: 0.2vh 0.8vw; border-radius: 6px; font-size: 2.2vh; }
+    .live { color: #22c55e; }
+    tr.entfallen td { color: #555; }
+    .empty { text-align: center; color: #666; font-size: 4vh; margin-top: 18vh; }
+  </style>
+  <script type="module" crossorigin src="/assets/tvTeamstand-DyeafM2H.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <link rel="modulepreload" crossorigin href="/assets/preload-helper-BXl3LOEh.js">
+  <link rel="modulepreload" crossorigin href="/assets/teamvergleich-Dz1V073M.js">
+  <link rel="modulepreload" crossorigin href="/assets/wake-lock-2hqwohiR.js">
+  <link rel="modulepreload" crossorigin href="/assets/tv-autofit-BTz2DVA_.js">
+</head>
+<body>
+
+  <div id="tv-viewport"><div id="tv-stage">
+    <div class="sub" id="sub"></div>
+    <div id="inhalt"></div>
+    <div class="empty" id="empty" style="display:none;">Gerade läuft kein Teamvergleich.</div>
+  </div></div>
+
+</body>
+</html>
