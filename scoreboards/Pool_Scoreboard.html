@@ -191,7 +191,8 @@ body {
   align-items: flex-end;
   justify-content: space-between;
   gap: 1vmin;
-  padding: 0.4vmin 1.5vmin calc(1vmin + env(safe-area-inset-bottom)) 1.5vmin;   /* iOS: Home-Indikator freihalten */
+  /* unten 4vmin: ueber dem Rahmen von Wandhalterung oder Tabletaufsteller; iOS: Home-Indikator freihalten */
+  padding: 0.4vmin 1.5vmin calc(4vmin + env(safe-area-inset-bottom)) 1.5vmin;
   position: relative;
   z-index: 10;
   flex: 0 0 auto;
@@ -360,13 +361,13 @@ button:disabled { opacity: 0.4; }
   <link rel="icon" type="image/svg+xml" href="/assets/favicon-CHDvK6Rk.svg">
   <!-- Eigene Dialoge (alert, confirmModal, promptModal). Als Modul eingebunden, damit
      der Bau es mitnimmt; es laeuft trotzdem vor dem Hauptskript, weil es davor steht. -->
-  <script type="module" crossorigin src="/assets/pool-BzuRxSEK.js"></script>
+  <script type="module" crossorigin src="/assets/pool-B3IM-kfv.js"></script>
   <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
   <link rel="modulepreload" crossorigin href="/assets/start-hinweis-C-ZKrFAb.js">
   <link rel="modulepreload" crossorigin href="/assets/preload-helper-BXl3LOEh.js">
   <link rel="modulepreload" crossorigin href="/assets/teamvergleich-Dz1V073M.js">
-  <link rel="modulepreload" crossorigin href="/assets/wake-lock-Dz9Tu5fS.js">
-  <link rel="modulepreload" crossorigin href="/assets/board-regeln--6-gd-j1.js">
+  <link rel="modulepreload" crossorigin href="/assets/wake-lock-BCulbgsF.js">
+  <link rel="modulepreload" crossorigin href="/assets/board-regeln-Dc94U6tp.js">
 </head>
 
 <body>

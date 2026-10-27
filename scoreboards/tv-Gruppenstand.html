@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CueDesk – Gruppenstand</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon-CHDvK6Rk.svg">
+  <!-- "TV zeigt: Gruppenstand" (Zwei Gruppen, Gruppen mit KO): die Gruppentabellen
+       wie auf der Ergebnis-Seite, aber immer, auch waehrend Duelle oder
+       KO-Runde laufen, mit "vorlaeufig" und dem Fortschritt der Gruppenspiele.
+       Daten aus tournament_archive (tvErgebnis, groupProgress). -->
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; background: #111; color: #fff; margin: 0; height: 100vh; overflow: hidden; }
+    /* Auto-Fit: der Inhalt in #tv-stage wird per JS passend auf den Bildschirm skaliert */
+    #tv-viewport { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+    #tv-stage { width: 100vw; padding: 3vh 2vw; transform-origin: center center; }
+    .tv-title { text-align: center; color: #888; font-size: 3.5vh; margin: 0 0 6px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; }
+    .tv-title .highlight { color: #38bdf8; }
+    .tv-sub { text-align: center; color: #aaa; font-size: 2.5vh; margin-bottom: 24px; }
+    h2.sec { color: #fff; font-size: 3vh; border-bottom: 2px solid #333; padding-bottom: 8px; margin: 26px 0 12px; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 18px; }
+    th { background: #1f3b73; color: #fff; font-size: 2vh; text-transform: uppercase; padding: 10px 12px; text-align: center; }
+    th.left, td.left { text-align: left; padding-left: 18px; }
+    td { padding: 9px 12px; font-size: 2.6vh; border-bottom: 1px solid #2a2a2a; text-align: center; }
+    tr:nth-child(even) td { background: #191919; }
+    .medal { font-size: 3vh; text-align: center; }
+    .medal .medaille { display: block; margin: 0 auto; height: 4vh; width: auto; }
+    .res { width: 18%; font-weight: bold; color: #38bdf8; }
+    .vorl { display: block; width: max-content; margin: -12px auto 16px; background: #f2c200; color: #111; font-weight: bold; font-size: 2.2vh; padding: 0.4vh 1.2vw; border-radius: 2vh; }
+    .empty { text-align: center; color: #666; font-size: 4vh; margin-top: 18vh; }
+  </style>
+  <script type="module" crossorigin src="/assets/tvGruppenstand-B8Uvh0u1.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <link rel="modulepreload" crossorigin href="/assets/preload-helper-BXl3LOEh.js">
+  <link rel="modulepreload" crossorigin href="/assets/teamvergleich-Dz1V073M.js">
+  <link rel="modulepreload" crossorigin href="/assets/wake-lock-BCulbgsF.js">
+  <link rel="modulepreload" crossorigin href="/assets/tv-autofit-BTz2DVA_.js">
+</head>
+<body>
+
+  <div id="tv-viewport"><div id="tv-stage">
+    <div class="tv-title" id="title">👥 Gruppenstand</div>
+    <div class="tv-sub" id="sub"></div>
+    <span class="vorl" id="vorl" style="display:none;">vorläufig</span>
+    <div id="content"></div>
+    <div class="empty" id="empty" style="display:none;">Gerade läuft kein Gruppenturnier.</div>
+  </div></div>
+
+
+</body>
+</html>
