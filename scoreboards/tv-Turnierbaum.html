@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CueDesk – Turnierbaum</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon-CHDvK6Rk.svg">
+  <!-- "TV zeigt: Turnierbaum" (Doppel-KO, Gruppen mit KO): der Baum mit Herkunft,
+       Ergebnis und Sieger, laufende Spiele mit Tisch und Stand vom Tablet.
+       Doppel-KO: Gewinnerrunde oben, Verliererrunde darunter, Endrunde rechts;
+       ab 17 Spielern wechseln die drei Teile als Seiten. Gerechnet in
+       src/turnierbaum.ts, geliefert unter tournament/turnierbaum. -->
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; background: #111; color: #fff; margin: 0; height: 100vh; overflow: hidden; }
+    #tv-viewport { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+    #tv-stage { width: 100vw; padding: 2.5vh 2.5vw; transform-origin: center center; }
+    .tv-title { text-align: center; color: #888; font-size: 3.2vh; margin: 0 0 4px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; }
+    .tv-title .highlight { color: #38bdf8; }
+    .tv-sub { text-align: center; color: #aaa; font-size: 2.2vh; margin-bottom: 1.5vh; }
+    .vorl { display: inline-block; margin-left: 1vw; background: #f2c200; color: #111; font-weight: bold; font-size: 1.8vh; padding: 0.2vh 0.8vw; border-radius: 2vh; }
+    .baum { display: flex; gap: 2vw; align-items: stretch; }
+    .zonen { display: flex; flex-direction: column; gap: 1.5vh; flex: 2; min-width: 0; }
+    .zone { min-width: 0; }
+    .zone h2 { margin: 0 0 0.6vh; font-size: 1.9vh; letter-spacing: 2px; color: #7fb2e6; }
+    .zone.v h2 { color: #e0a85a; }
+    .zone.e h2 { color: #8fcf6a; }
+    .spalten { display: flex; gap: 1.2vw; }
+    .spalte { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: space-around; }
+    .spalte h3 { margin: 0 0 0.4vh; font-size: 1.6vh; color: #9fb0c0; font-weight: normal; }
+    .spiel { background: #1d2630; border: 1px solid #2c3a48; border-radius: 6px; padding: 0.4vh 0.6vw; margin: 0.4vh 0; font-size: 1.9vh; }
+    .spiel .kopf { font-size: 1.3vh; color: #7d8c9a; }
+    .zeile { display: flex; justify-content: space-between; gap: 0.6vw; white-space: nowrap; }
+    .zeile .n { overflow: hidden; text-overflow: ellipsis; }
+    .zeile .h { color: #6f7f8e; font-size: 1.4vh; }
+    .sieg { font-weight: bold; color: #fff; }
+    .raus { color: #7d8c9a; }
+    .wartet { color: #9fb0c0; }
+    .frei { opacity: 0.45; font-style: italic; }
+    .live { border-color: #e0a030; box-shadow: inset 4px 0 0 #e0a030; }
+    .live .kopf { color: #e0a030; }
+    .seite { text-align: center; color: #888; font-size: 1.8vh; margin-top: 1vh; }
+    .empty { text-align: center; color: #666; font-size: 4vh; margin-top: 18vh; }
+  </style>
+  <script type="module" crossorigin src="/assets/tvTurnierbaum-B0O0xy9P.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <link rel="modulepreload" crossorigin href="/assets/preload-helper-B336Qpb3.js">
+  <link rel="modulepreload" crossorigin href="/assets/endplaetze-B-4kKCXT.js">
+  <link rel="modulepreload" crossorigin href="/assets/wake-lock-Cls_TZWu.js">
+  <link rel="modulepreload" crossorigin href="/assets/tv-autofit-DgiNYFkO.js">
+</head>
+<body>
+
+  <div id="tv-viewport"><div id="tv-stage">
+    <div class="tv-title" id="title">Turnierbaum</div>
+    <div class="tv-sub" id="sub"></div>
+    <div id="inhalt"></div>
+    <div class="seite" id="seite"></div>
+    <div class="empty" id="empty" style="display:none;">Noch kein Turnierbaum: Doppel-KO nicht ausgelost bzw. KO-Runde nicht angesetzt.</div>
+  </div></div>
+
+</body>
+</html>
