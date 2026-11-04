@@ -26,6 +26,8 @@
 
     .tv-grid { display: grid; gap: 20px; box-sizing: border-box; }
     .layout-single-group { grid-template-columns: 1fr; max-width: 700px; margin: 0 auto; }
+    /* Grosses Spielerfeld (ab 13) und Doppel-KO: ueber die ganze Breite */
+    .layout-single-group.breit { max-width: none; }
     .layout-two-groups  { grid-template-columns: 1fr 1fr; }
     .layout-four-groups { grid-template-columns: 1fr 1fr; }
 
@@ -47,6 +49,19 @@
       border-left: 8px solid #4488ff;
     }
     .tv-player-list li:nth-child(even) { border-left-color: #ff4444; }
+    /* Startnummer vor dem Namen; ab 13 Spielern zwei, ab 25 drei Spalten */
+    .tv-player-list .nr { color: #777; min-width: 2.2em; font-size: 0.8em; }
+    .tv-player-list.spalten-2, .tv-player-list.spalten-3 { display: grid; grid-auto-flow: column; column-gap: 1.5vw; }
+    .tv-player-list.spalten-2 li, .tv-player-list.spalten-3 li { border-left-color: #4488ff; }
+    /* Doppel-KO: Paarungen der Gewinnerrunde 1 in zwei Spalten */
+    .runde-titel { color: #9fb0c0; font-size: 2.4vh; margin: 0 0 1vh; }
+    .paarungen { display: grid; grid-auto-flow: column; grid-template-columns: 1fr 1fr; column-gap: 2vw; row-gap: 8px; }
+    .paarung { display: flex; align-items: center; gap: 1vw; background: #1a1a1a; border-radius: 10px; padding: 10px 18px; font-size: 3.4vh; font-weight: bold; white-space: nowrap; }
+    .paarung .nr { color: #777; min-width: 2em; font-size: 0.8em; }
+    .paarung .p1 { color: #ff6b6b; }
+    .paarung .p2 { color: #6ba4ff; }
+    .paarung .gegen { color: #666; }
+    .paarung .frei { color: #777; font-style: italic; font-weight: normal; font-size: 0.8em; }
 
     .empty { text-align: center; color: #666; font-size: 4vh; margin-top: 18vh; }
     /* Teamvergleich: Teamnamen in Rot und Blau */
@@ -54,7 +69,7 @@
     .team-name.team-1 { background: #c62828; }
     .team-name.team-2 { background: #1f5fae; }
   </style>
-  <script type="module" crossorigin src="/assets/tvAuslosung-L8oIII3J.js"></script>
+  <script type="module" crossorigin src="/assets/tvAuslosung-C-pSJdM0.js"></script>
   <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
   <link rel="modulepreload" crossorigin href="/assets/endplaetze-B-4kKCXT.js">
   <link rel="modulepreload" crossorigin href="/assets/preload-helper-zcVjPdMZ.js">
